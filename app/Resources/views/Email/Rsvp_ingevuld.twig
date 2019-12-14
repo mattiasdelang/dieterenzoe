@@ -1,0 +1,21 @@
+Er is een RSVP bijgekomen.
+
+Aantal personen: {{ rsvp.aantalPersonen }}
+Emailadres: {{ rsvp.emailadres }}
+Vragen: {{ rsvp.vragen }}
+Personen:
+
+{% for persoon in rsvp.personen %}
+    <ul>
+        <li>Naam: {{ persoon.naam }}</li>
+        <li>Nummers:
+            <ul>
+                {% for nummer in persoon %}
+                    <li>
+                        {{ nummer.nummer }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+{% endfor %}

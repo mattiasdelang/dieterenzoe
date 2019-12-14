@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
+use Twig\Environment;
 
 class RsvpManager
 {
@@ -24,14 +25,32 @@ class RsvpManager
     private $router;
 
     /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    /**
      * RsvpManager constructor.
      * @param EntityManagerInterface $em
      * @param RouterInterface $router
+     * @param \Swift_Mailer $mailer
+     * @param Environment $twig
      */
-    public function __construct(EntityManagerInterface $em, RouterInterface $router)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        RouterInterface $router,
+        \Swift_Mailer $mailer,
+        Environment $twig
+    ) {
         $this->em = $em;
         $this->router = $router;
+        $this->mailer = $mailer;
+        $this->twig = $twig;
     }
 
     /**
@@ -53,21 +72,38 @@ class RsvpManager
     }
 
     /**
-     * @param Request $request
      * @param Rsvp $rsvp
      *
      * @return string
      */
-    public function handleRsvp(Request $request, Rsvp $rsvp)
+    public function handleRsvp(Rsvp $rsvp)
     {
         $this->em->persist($rsvp);
         $this->em->flush();
 
-        /** @var Session $session */
-        $session = $request->getSession();
+        $this->mail($rsvp);
 
-        $session->getFlashBag()->add('notice', 'Je hebt succesvol je rsvp ingevuld!');
+        return $this->router->generate('rsvp_succes');
+    }
 
-        return $this->router->generate('homepage');
+    private function mail(Rsvp $rsvp)
+    {
+        $message = (new \Swift_Message('Dieter en Zoé: RSVP ingevuld'))
+            ->setFrom('dieterenzoetrouwen@gmail.com')
+            ->setTo('mattiasdelang@gmail.com')
+            ->setBody(
+                $this->twig->render(
+                    'Email/Rsvp_ingevuld.twig',
+                    ['rsvp' => $rsvp]
+                ),
+                'text/html'
+            )
+        ;
+        $logger = new \Swift_Plugins_Loggers_ArrayLogger;
+        $this->mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($logger));
+
+        $status = $this->mailer->send($message);
+        dump($logger);
+        dump($status);die;
     }
 }

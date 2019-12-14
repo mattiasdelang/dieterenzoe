@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body class="is-preload">
+        <div id="wrapper">
+            <div id="bg"></div>
+            <div id="main">
+
+                <!-- Header -->
+                <header id="header" class="donkerder">
+                    <h1>Whoop Whoop!</h1>
+                    <p>Uw RSVP is goed ontvangen.</p>
+                    <p>Geen nood uw gegevens zijn veilig bij ons, u zal alleen een e-mail ontvangen als wij nog vragen hebben.</p>
+                    <p>Wij zien u graag op 23 mei 2020!</p>
+                    <p>
+                        <a href="{{ path('home') }}" class="link">Terug naar home</a>
+                    </p>
+                </header>
+
+            </div>
+        </div>
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = function() { document.body.classList.remove('is-preload'); }
+        window.ontouchmove = function() { return false; }
+        window.onorientationchange = function() { document.body.scrollTop = 0; }
+    </script>
+{% endblock %}

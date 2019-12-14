@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Persoon;
 use AppBundle\Entity\Rsvp;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -23,7 +24,11 @@ class RsvpType extends AbstractType
             ->add('personen', CollectionType::class, [
                 'entry_type' => PersoonType::class,
                 'allow_add' => true,
-                'label' => false
+                'label' => false,
+                'allow_delete' => true,
+//                'delete_empty' => function (Persoon $persoon = null) {
+//                    return $persoon->getNaam() === null;
+//                },
             ])
         ;
 
@@ -33,7 +38,10 @@ class RsvpType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Rsvp::class
+            'data_class' => Rsvp::class,
+            'validation_groups' => [
+                'aanmaken'
+            ]
         ]);
     }
 

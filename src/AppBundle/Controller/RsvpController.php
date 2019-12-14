@@ -50,11 +50,23 @@ class RsvpController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $form->getClickedButton()) {
-            return new RedirectResponse($this->manager->handleRsvp($form, $rsvp));
+            return new RedirectResponse($this->manager->handleRsvp($rsvp));
         }
 
         return [
             'form' => $form->createView()
         ];
+    }
+
+    /**
+     * @Route("/rsvp/success", name="rsvp_succes")
+     *
+     * @Template("Rsvp/Done.twig")
+     *
+     * @return array
+     */
+    public function doneAction()
+    {
+        return [];
     }
 }

@@ -5,12 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Constraints as AppAssert;
 
 /**
  * Rsvp
  *
  * @ORM\Table(name="rsvp")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RsvpRepository")
+ * @AppAssert\Rsvp(groups={"aanmaken"})
  */
 class Rsvp
 {
@@ -27,6 +30,7 @@ class Rsvp
      * @var int
      *
      * @ORM\Column(name="aantalPersonen", type="integer")
+     * @Assert\NotBlank(groups={"aanmaken"})
      */
     private $aantalPersonen = 1;
 
@@ -34,20 +38,23 @@ class Rsvp
      * @var string
      *
      * @ORM\Column(name="emailadres", type="string", length=255)
+     * @Assert\NotBlank(groups={"aanmaken"})
+     * @Assert\Email(checkHost = true, checkMX = true, groups={"aanmaken"})
      */
     private $emailadres;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="vragen", type="text")
+     * @ORM\Column(name="vragen", type="text", nullable=true)
      */
     private $vragen;
 
     /**
      * @var Persoon[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persoon", mappedBy="rsvp")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persoon", mappedBy="rsvp", cascade={"persist"})
+     * @Assert\Valid
      */
     private $personen;
     

@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Persoon
@@ -27,6 +28,7 @@ class Persoon
      * @var string
      *
      * @ORM\Column(name="naam", type="string", length=255)
+     * @Assert\NotBlank(groups={"aanmaken"})
      */
     private $naam;
 
@@ -41,7 +43,7 @@ class Persoon
     /**
      * @var Verzoeknummer[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Verzoeknummer", mappedBy="persoon")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Verzoeknummer", mappedBy="persoon", cascade={"persist"})
      */
     private $nummers;
 
