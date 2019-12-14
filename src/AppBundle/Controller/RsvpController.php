@@ -34,7 +34,7 @@ class RsvpController
     }
 
     /**
-     * @Route("/rsvp", name="homepage")
+     * @Route("/rsvp", name="rsvp")
      *
      * @Template("Rsvp/Index.twig")
      *

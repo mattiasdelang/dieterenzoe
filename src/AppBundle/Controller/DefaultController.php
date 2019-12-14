@@ -5,10 +5,10 @@ namespace AppBundle\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class HomeController
+class DefaultController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("", name="home")
      *
      * @Template("Home/Index.twig")
      *

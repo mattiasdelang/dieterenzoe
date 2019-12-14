@@ -1,4 +1,69 @@
 {% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
 
 {% block body %}
+    <body class="is-preload">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="main">
+
+            <!-- Header -->
+            <header id="header">
+                <h1>Dieter & Zoé</h1>
+                <p>23 mei 2020</p>
+                <p>
+                    <a href="#" onclick="lightbox_open();" class="link">Verlovings video</a>
+                    &nbsp;&bull;&nbsp;
+                    <!--<a class="link ontwikkeling">RSVP<span class="tooltip">Binnekort beschikbaar!</span></a>-->
+                    <a href="http://dieterenzoetrouwen.be/rsvp/formulier.html" class="link">RSVP</a>
+                    &nbsp;&bull;&nbsp;
+                    <a class="link ontwikkeling">Foto's<span class="tooltip">Binnekort beschikbaar!</span></a>
+                    &nbsp;&bull;&nbsp;
+                    <a class="link ontwikkeling">Aftermovie<span class="tooltip">Binnekort beschikbaar!</span></a>
+                </p>
+            </header>
+
+            <div id="light">
+                <a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
+                <video id="VisaChipCardVideo" width="600" controls>
+                    <source src="assets/aanzoek.mp4" type="video/mp4">
+                    <!--Browser does not support <video> tag -->
+                </video>
+            </div>
+            <div id="fade" onClick="lightbox_close();"></div>
+
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = function() { document.body.classList.remove('is-preload'); }
+        window.ontouchmove = function() { return false; }
+        window.onorientationchange = function() { document.body.scrollTop = 0; }
+        window.document.onkeydown = function(e) {
+            if (!e) {
+                e = event;
+            }
+            if (e.keyCode == 27) {
+                lightbox_close();
+            }
+        }
+
+        function lightbox_open() {
+            var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+            window.scrollTo(0, 0);
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+            lightBoxVideo.play();
+        }
+
+        function lightbox_close() {
+            var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+            document.getElementById('light').style.display = 'none';
+            document.getElementById('fade').style.display = 'none';
+            lightBoxVideo.pause();
+        }
+    </script>
 {% endblock %}

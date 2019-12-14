@@ -7,6 +7,8 @@ use AppBundle\Entity\Rsvp;
 use AppBundle\Entity\Verzoeknummer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 
 class RsvpManager
@@ -51,27 +53,20 @@ class RsvpManager
     }
 
     /**
-     * @param FormInterface $form
+     * @param Request $request
      * @param Rsvp $rsvp
      *
      * @return string
      */
-    public function handleRsvp(FormInterface $form, Rsvp $rsvp)
-    {
-        $knopNaam = $form->getClickedButton()->getName();
-
-        return $this->$knopNaam($rsvp);
-    }
-
-    /**
-     * @param Rsvp $rsvp
-     *
-     * @return string
-     */
-    private function opslaan(Rsvp $rsvp)
+    public function handleRsvp(Request $request, Rsvp $rsvp)
     {
         $this->em->persist($rsvp);
         $this->em->flush();
+
+        /** @var Session $session */
+        $session = $request->getSession();
+
+        $session->getFlashBag()->add('notice', 'Je hebt succesvol je rsvp ingevuld!');
 
         return $this->router->generate('homepage');
     }

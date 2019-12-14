@@ -3,15 +3,13 @@
     <head>
         <link rel="icon" href="{{ asset('images/logo_d.png') }}">
         <meta charset="UTF-8" />
-        <title>{% block title %}RSVP | Dieter en Zoé trouwen{% endblock %}</title>
+        <title>{% block title %}Dieter en Zoé trouwen{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
         <script src="https://code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-ivk71nXhz9nsyFDoYoGf2sbjrR9ddh+XDkCcfZxjvcM=" crossorigin="anonymous"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
 </html>
