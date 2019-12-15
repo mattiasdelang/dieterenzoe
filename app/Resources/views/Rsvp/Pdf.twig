@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <body>
+        <div class="rsvp">
+            <div class="formulier">
+                <h1>PDF</h1>
+                {{ form_start(form) }}
+
+                    <div class="form-row">
+                        <label for="aantal">Welke info wil je in de pdf?*</label>
+                        {{ form_widget(form.watTonen, {'attr' : {'class' : 'input'}}) }}
+                        {{ form_errors(form.watTonen) }}
+                    </div>
+
+                    <div class="form-row knoppen">
+                        <div class="floatLeft">
+                            {{ form_widget(form.opslaan, {'attr' : {'class' : 'opslaanKnop'}}) }}
+                            <a href="{{ path('home') }}">Annuleer</a>
+                        </div>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = function() { document.body.classList.remove('is-preload'); }
+        window.ontouchmove = function() { return false; }
+        window.onorientationchange = function() { document.body.scrollTop = 0; }
+    </script>
+{% endblock %}

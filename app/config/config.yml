@@ -69,3 +69,10 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+knp_snappy:
+  temporary_folder: "%kernel.cache_dir%/snappy"
+  pdf:
+      enabled:    true
+      binary:     xvfb-run /usr/bin/wkhtmltopdf
+      options:    []

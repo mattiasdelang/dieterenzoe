@@ -1,0 +1,11 @@
+<ul>
+    {% for rsvp in rsvps %}
+        {% for persoon in rsvp.personen %}
+            {% for nummer in persoon.nummers %}
+                <li>
+                    {{ nummer.nummer }}
+                </li>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body>
+
+        {% if model.watTonen == constant('AppBundle\\Model\\PdfModel::ALLES') %}
+
+            {% include 'Pdf/includes/Alles.twig' with {'rsvps' : rsvps} %}
+
+        {% elseif model.watTonen == constant('AppBundle\\Model\\PdfModel::PERSONEN') %}
+
+            {% include 'Pdf/includes/Personen.twig' with {'rsvps' : rsvps} %}
+
+        {% elseif model.watTonen == constant('AppBundle\\Model\\PdfModel::NUMMERS') %}
+
+            {% include 'Pdf/includes/Nummers.twig' with {'rsvps' : rsvps} %}
+
+        {% elseif model.watTonen == constant('AppBundle\\Model\\PdfModel::VRAGEN') %}
+
+            {% include 'Pdf/includes/Vragen.twig' with {'rsvps' : rsvps} %}
+
+        {% elseif model.watTonen == constant('AppBundle\\Model\\PdfModel::EMAILADRESSEN') %}
+
+            {% include 'Pdf/includes/Emailadressen.twig' with {'rsvps' : rsvps} %}
+
+        {% endif %}
+
+    </body>
+{% endblock %}
+
