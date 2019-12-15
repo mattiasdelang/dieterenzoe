@@ -99,11 +99,7 @@ class RsvpManager
                 'text/html'
             )
         ;
-        $logger = new \Swift_Plugins_Loggers_ArrayLogger;
-        $this->mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($logger));
 
-        $status = $this->mailer->send($message);
-        dump($logger);
-        dump($status);die;
+        $this->mailer->send($message);
     }
 }

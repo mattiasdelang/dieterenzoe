@@ -5,8 +5,10 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Persoon;
 use AppBundle\Entity\Rsvp;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\NumberToLocalizedStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,7 +20,7 @@ class RsvpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('aantalPersonen', NumberType::class)
+            ->add('aantalPersonen', IntegerType::class)
             ->add('emailadres', EmailType::class)
             ->add('vragen', TextareaType::class)
             ->add('personen', CollectionType::class, [
