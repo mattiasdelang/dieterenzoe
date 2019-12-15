@@ -8,7 +8,7 @@ security:
             memory:
              users:
                 dieterenzoe:
-                  password: 18feb12
+                  password: '%basic_http_password%'
                   roles: 'ROLE_ADMIN'
 
     firewalls:
