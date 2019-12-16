@@ -869,7 +869,7 @@ a:hover {
     background-color: #5dade2;
     border-color: #5dade2;
 }
-.rsvp .fomulier input + ul {
+.rsvp .fomulier .backendError {
     background-color: rgba(255, 0, 0, 0.4);
 }
 /* Footer */
