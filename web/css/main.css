@@ -869,6 +869,9 @@ a:hover {
     background-color: #5dade2;
     border-color: #5dade2;
 }
+.rsvp .fomulier input + ul {
+    background-color: rgba(255, 0, 0, 0.4);
+}
 /* Footer */
 
 #footer {
