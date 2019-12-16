@@ -92,8 +92,8 @@ class RsvpManager
     private function mail(Rsvp $rsvp)
     {
         $message = (new \Swift_Message('Dieter en Zoé: RSVP ingevuld'))
-            ->setFrom('dieterenzoetrouwen@gmail.com')
-            ->setTo('mattiasdelang@gmail.com')
+            ->setFrom('dieterenzoetrouw@gmail.com')
+            ->setTo('rsvp@dieterenzoetrouwen.be')
             ->setBody(
                 $this->twig->render(
                     'Email/Rsvp_ingevuld.twig',
