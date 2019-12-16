@@ -14,13 +14,21 @@
                     </div>
                     <div class="extraPersonen">
                         <div class="form-row vast">
-                            {% set teller = 0 %}
-                            {% for persoon in form.personen %}
-                                {% if loop.first %}
-                                    <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
-                                {% else %}
-                                    <label for="{{ persoon.naam.vars.id }}">Extra naam ({{ teller }})*</label>
-                                {% endif %}
+                            {% for persoon in form.personen if loop.first %}
+                                <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
+                                {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
+                                {{ form_errors(persoon.naam) }}
+                                <label>Verzoeknummers</label>
+                                {% for nummer in persoon.nummers %}
+                                    {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
+                                {% endfor %}
+                                <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
+                            {% endfor %}
+                        </div>
+                        {% set teller = 0 %}
+                        {% for persoon in form.personen if not loop.first %}
+                            <div class="form-row extraRij">
+                                <label for="{{ persoon.naam.vars.id }}">Extra naam ({{ teller }})*</label>
                                 {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
                                 {{ form_errors(persoon.naam) }}
                                 <label>Verzoeknummers</label>
@@ -29,8 +37,11 @@
                                 {% endfor %}
                                 <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
                                 {% set teller = teller + 1 %}
-                            {% endfor %}
-                        </div>
+                            </div>
+                        {% endfor %}
+
+
+
                     </div>
                     <div class="form-row">
                         <label for="{{ form.emailadres.vars.id }}">E-mail*</label>
