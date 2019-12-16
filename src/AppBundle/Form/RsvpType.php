@@ -28,6 +28,7 @@ class RsvpType extends AbstractType
                 'allow_add' => true,
                 'label' => false,
                 'allow_delete' => true,
+                'by_reference' => false
 //                'delete_empty' => function (Persoon $persoon = null) {
 //                    return $persoon->getNaam() === null;
 //                },

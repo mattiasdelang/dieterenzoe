@@ -86,6 +86,9 @@ class RsvpManager
         return $this->router->generate('rsvp_succes');
     }
 
+    /**
+     * @param Rsvp $rsvp
+     */
     private function mail(Rsvp $rsvp)
     {
         $message = (new \Swift_Message('Dieter en Zoé: RSVP ingevuld'))

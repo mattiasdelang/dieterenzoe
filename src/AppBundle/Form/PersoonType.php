@@ -18,7 +18,8 @@ class PersoonType extends AbstractType
             ->add('nummers', CollectionType::class, [
                 'entry_type' => VerzoeknummerType::class,
                 'allow_add' => true,
-                'label' => false
+                'label' => false,
+                'by_reference' => false
             ])
         ;
     }
