@@ -18,7 +18,7 @@
                                 {% if loop.first %}
                                     <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
                                     {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
-                                    {{ form_errors(persoon.naam) }}
+                                    <span class="backendError">{{ form_errors(persoon.naam) }}</span>
                                     <label>Verzoeknummers</label>
                                     {% for nummer in persoon.nummers %}
                                         {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
@@ -33,7 +33,7 @@
                                 <div class="form-row extraRij">
                                     <label for="{{ persoon.naam.vars.id }}">Extra naam ({{ teller }})*</label>
                                     {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
-                                    {{ form_errors(persoon.naam) }}
+                                    <span class="backendError">{{ form_errors(persoon.naam) }}</span>
                                     <label>Verzoeknummers</label>
                                     {% for nummer in persoon.nummers %}
                                         {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
