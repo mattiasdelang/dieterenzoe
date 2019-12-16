@@ -32,7 +32,7 @@ class Verzoeknummer
      * @var Persoon
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persoon", inversedBy="nummers")
-     * @ORM\JoinColumn(name="persoon_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="persoon_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $persoon;
 

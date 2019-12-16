@@ -53,7 +53,7 @@ class Rsvp
     /**
      * @var Persoon[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persoon", mappedBy="rsvp", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persoon", mappedBy="rsvp", cascade={"persist"}, orphanRemoval=true)
      * @Assert\Valid
      */
     private $personen;

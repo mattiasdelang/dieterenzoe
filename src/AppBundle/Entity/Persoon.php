@@ -36,14 +36,14 @@ class Persoon
      * @var Rsvp
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rsvp", inversedBy="personen")
-     * @ORM\JoinColumn(name="rsvp_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="rsvp_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $rsvp;
 
     /**
      * @var Verzoeknummer[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Verzoeknummer", mappedBy="persoon", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Verzoeknummer", mappedBy="persoon", cascade={"persist"}, orphanRemoval=true)
      */
     private $nummers;
 
