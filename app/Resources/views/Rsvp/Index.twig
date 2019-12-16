@@ -8,17 +8,17 @@
                 <h1>RSVP</h1>
                 {{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
                     <div class="form-row">
-                        <label for="aantal">Met hoeveel personen komen jullie?*</label>
-                        {{ form_widget(form.aantalPersonen, {'attr' : {'class' : 'input'}}) }}
+                        <label for="{{ form.aantalPersonen.vars.id }}">Met hoeveel personen komen jullie?*</label>
+                        {{ form_widget(form.aantalPersonen, {'attr' : {'class' : 'input aantalPersonen', 'min' : '1'}}) }}
                         {{ form_errors(form.aantalPersonen) }}
                     </div>
                     <div class="extraPersonen">
                         <div class="form-row vast">
                             {% for persoon in form.personen %}
-                                <label for="">Eerste naam*</label>
+                                <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
                                 {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
                                 {{ form_errors(persoon.naam) }}
-                                <label for="">Verzoeknummers</label>
+                                <label>Verzoeknummers</label>
                                 {% for nummer in persoon.nummers %}
                                     {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
                                 {% endfor %}
@@ -27,12 +27,12 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label for="email">E-mail*</label>
+                        <label for="{{ form.emailadres.vars.id }}">E-mail*</label>
                         {{ form_widget(form.emailadres, {'attr' : {'class' : 'input'}}) }}
                         {{ form_errors(form.emailadres) }}
                     </div>
                     <div class="form-row">
-                        <label for="opmerkingen">Vragen?</label>
+                        <label for="{{ form.vragen.vars.id }}">Vragen?</label>
                         {{ form_widget(form.vragen, {'attr' : {'cols' : '30', 'rows' : '10', 'class' : 'input'}}) }}
                     </div>
                     <div class="form-row knoppen">
