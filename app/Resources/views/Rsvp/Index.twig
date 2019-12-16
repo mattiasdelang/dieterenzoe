@@ -14,30 +14,34 @@
                     </div>
                     <div class="extraPersonen">
                         <div class="form-row vast">
-                            {% for persoon in form.personen if loop.first %}
-                                <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
-                                {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
-                                {{ form_errors(persoon.naam) }}
-                                <label>Verzoeknummers</label>
-                                {% for nummer in persoon.nummers %}
-                                    {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
-                                {% endfor %}
-                                <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
+                            {% for persoon in form.personen %}
+                                {% if loop.first %}
+                                    <label for="{{ persoon.naam.vars.id }}">Eerste naam*</label>
+                                    {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
+                                    {{ form_errors(persoon.naam) }}
+                                    <label>Verzoeknummers</label>
+                                    {% for nummer in persoon.nummers %}
+                                        {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
+                                    {% endfor %}
+                                    <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         {% set teller = 0 %}
-                        {% for persoon in form.personen if not loop.first %}
-                            <div class="form-row extraRij">
-                                <label for="{{ persoon.naam.vars.id }}">Extra naam ({{ teller }})*</label>
-                                {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
-                                {{ form_errors(persoon.naam) }}
-                                <label>Verzoeknummers</label>
-                                {% for nummer in persoon.nummers %}
-                                    {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
-                                {% endfor %}
-                                <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
-                                {% set teller = teller + 1 %}
-                            </div>
+                        {% for persoon in form.personen %}
+                            {% if not loop.first %}
+                                <div class="form-row extraRij">
+                                    <label for="{{ persoon.naam.vars.id }}">Extra naam ({{ teller }})*</label>
+                                    {{ form_widget(persoon.naam, {'attr' : {'class' : 'input'}}) }}
+                                    {{ form_errors(persoon.naam) }}
+                                    <label>Verzoeknummers</label>
+                                    {% for nummer in persoon.nummers %}
+                                        {{ form_widget(nummer.nummer, {'attr' : {'class' : 'input'}}) }}
+                                    {% endfor %}
+                                    <div class="bijsluiter">Welke 2 nummers wil je zeker horen op het feest?</div>
+                                    {% set teller = teller + 1 %}
+                                </div>
+                            {% endif %}
                         {% endfor %}
 
 
