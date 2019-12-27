@@ -19,7 +19,6 @@ $(window).on("load", function () {
         element = element.split('teller').join(aantalPersonen);
 
         for (var i = 1; i < aantalPersonen; i++) {
-            console.log(i);
             extra += element.split('aantalExtra').join(i);
         }
         parent.append(extra);
