@@ -1,6 +1,6 @@
 $(window).on("load", function () {
-    var parent = $(".extraPersonen");
-    var rij =
+    const parent = $(".extraPersonen");
+    const row =
         '<div class="form-row extraRij">' +
         '<label for="">Extra naam (aantalExtra)*</label>' +
         '<input type="text" name="rsvp[personen][aantalExtra][naam]" id="rsvp_personen_aantalExtra_naam" class="input" autocomplete="new" required>' +
@@ -11,16 +11,16 @@ $(window).on("load", function () {
         '</div>';
 
     $(".aantalPersonen").on("input", function () {
-        var aantalPersonen = $(this).val();
-        var element = rij;
-        var extra = '';
+        const amountOfPersons = $(this).val();
+        let element = row;
+        let result = '';
 
         parent.find(".form-row:not(.vast)").remove();
-        element = element.split('teller').join(aantalPersonen);
+        element = element.split('teller').join(amountOfPersons);
 
-        for (var i = 1; i < aantalPersonen; i++) {
-            extra += element.split('aantalExtra').join(i);
+        for (let i = 1; i < amountOfPersons; i++) {
+            result += element.split('aantalExtra').join(i);
         }
-        parent.append(extra);
+        parent.append(result);
     });
 });
