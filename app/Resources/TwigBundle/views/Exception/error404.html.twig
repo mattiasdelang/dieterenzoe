@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body class="is-preload">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="main">
+
+            <!-- Header -->
+            <header id="header" class="donkerder">
+                <h1>404</h1>
+                <p>De pagina die u probeert te bereiken is niet beschikbaar.</p>
+                <p>Als er iets is misgelopen bij uw RSVP aanmelding probeer dit dan opnieuw.</p>
+                <p>Blijft het probleem zich voordoen, neem dan contact met ons op.</p>
+                <p>
+                    <a href="//dieterenzoetrouwen.be/" class="link">Terug naar home</a>
+                    &nbsp;&bull;&nbsp;
+                    <a href="//dieterenzoetrouwen.be/rsvp" class="link">RSVP</a>
+                    &nbsp;&bull;&nbsp;
+                    <a href="mailto:dietermeys@gmail.com?SUBJECT=404 pagina" class="link">Contact</a>
+                </p>
+            </header>
+
+        </div>
+    </div>
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.onload = function() { document.body.classList.remove('is-preload'); }
+        window.ontouchmove = function() { return false; }
+        window.onorientationchange = function() { document.body.scrollTop = 0; }
+    </script>
+{% endblock %}
