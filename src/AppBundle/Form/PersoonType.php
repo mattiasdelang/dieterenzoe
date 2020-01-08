@@ -19,6 +19,7 @@ class PersoonType extends AbstractType
             ->add('nummers', CollectionType::class, [
                 'entry_type' => VerzoeknummerType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'label' => false,
                 'by_reference' => false,
                 'delete_empty' => function (Verzoeknummer $nummer = null) {
