@@ -24,7 +24,7 @@ class Verzoeknummer
     /**
      * @var string
      *
-     * @ORM\Column(name="nummer", type="text")
+     * @ORM\Column(name="nummer", type="text", nullable=true)
      */
     private $nummer;
 

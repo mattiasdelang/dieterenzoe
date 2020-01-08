@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Persoon;
+use AppBundle\Entity\Verzoeknummer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,7 +20,11 @@ class PersoonType extends AbstractType
                 'entry_type' => VerzoeknummerType::class,
                 'allow_add' => true,
                 'label' => false,
-                'by_reference' => false
+                'by_reference' => false,
+                'delete_empty' => function (Verzoeknummer $nummer = null) {
+                    return $nummer === null || $nummer->getNummer() === null;
+                },
+
             ])
         ;
     }
