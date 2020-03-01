@@ -57,7 +57,15 @@ class Rsvp
      * @Assert\Valid
      */
     private $personen;
-    
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->personen = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -101,7 +109,7 @@ class Rsvp
      */
     public function setEmailadres($emailadres)
     {
-        $this->emailadres = $emailadres;
+        $this->emailadres = utf8_decode($emailadres);
 
         return $this;
     }
@@ -125,7 +133,7 @@ class Rsvp
      */
     public function setVragen($vragen)
     {
-        $this->vragen = $vragen;
+        $this->vragen = utf8_decode($vragen);
 
         return $this;
     }
@@ -138,13 +146,6 @@ class Rsvp
     public function getVragen()
     {
         return $this->vragen;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->personen = new ArrayCollection();
     }
 
     /**

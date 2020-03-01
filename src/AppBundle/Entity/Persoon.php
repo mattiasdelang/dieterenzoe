@@ -48,6 +48,14 @@ class Persoon
     private $nummers;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->nummers = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -66,7 +74,7 @@ class Persoon
      */
     public function setNaam($naam)
     {
-        $this->naam = $naam;
+        $this->naam = utf8_decode($naam);
 
         return $this;
     }
@@ -79,13 +87,6 @@ class Persoon
     public function getNaam()
     {
         return $this->naam;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->nummers = new ArrayCollection();
     }
 
     /**

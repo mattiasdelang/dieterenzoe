@@ -55,7 +55,7 @@ class Verzoeknummer
      */
     public function setNummer($nummer)
     {
-        $this->nummer = $nummer;
+        $this->nummer = utf8_decode($nummer);
 
         return $this;
     }
